@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
     return (
         <footer className={styles.footer}>
             <hr />
-            <p className={styles.red} >Copyright Edgemony {year}</p>
+            <p className={styles} >Copyright Edgemony {year}</p>
         </footer>
     )
 }

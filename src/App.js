@@ -1,5 +1,5 @@
 
-import Header from "./components/Headers";
+import Header from "./components/Header";
 import Footer from "./components/Footer/index";
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
 
     <div>
       <Header name = {name} links={nav}/>
+      <p>Lorem ipsum</p>
       <Footer />
     </div>
 
