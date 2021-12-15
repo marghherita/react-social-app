@@ -1,6 +1,7 @@
 
 import Header from "./components/Header";
 import Footer from "./components/Footer/index";
+import Home from "./pages/Home";
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
 
     <div>
       <Header name = {name} links={nav}/>
-      <p>Lorem ipsum</p>
+      <Home />
       <Footer />
     </div>
 
