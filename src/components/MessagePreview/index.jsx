@@ -9,10 +9,12 @@ const MessagePreview = (props) => {
     sender: "User",
   };
 
+
+
   return (
     <div className={styles.message}>
       <h5>{data.sender}</h5>
-      <CreateDate />
+      <CreateDate data={data} />
       <p>{data.text}</p>
     </div>
   );

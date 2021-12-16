@@ -1,6 +1,5 @@
-import { formatDistance, formatRelative } from "date-fns";
-import { getHours } from 'date-fns'
-import { it } from 'date-fns/locale';
+
+import { CreateDate } from "./../CreateDate";
 import styles from "./Post.module.scss";
 
 const Post = (props) => {
@@ -16,11 +15,7 @@ const Post = (props) => {
   return (
     <article className={styles.post}>
       <h3>{data.author}</h3>
-      <p>
-        <small>
-          {formatRelative(new Date(data.date), new Date(), {addSuffix: true, locale: it})}
-        </small>
-      </p>
+      <CreateDate data={data} />
       <p>{data.text}</p>
 
       {data.photo ? <img src={data.photo} alt={data.author} /> : <></>}

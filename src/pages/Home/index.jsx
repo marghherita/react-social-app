@@ -16,6 +16,7 @@ const Home = () => {
   const [allPosts, setAllPosts] = useState(posts);
   const [messagesPreview, setMessagesPreview] = useState(messages);
 
+
   // GETTER -> const friendsPreview = [];
   // SETTER -> friendsPreview = [...];
 
@@ -36,6 +37,7 @@ const Home = () => {
     // .then((data) => setAllPosts(data));
 
   }, []);
+
 
 
   return (
