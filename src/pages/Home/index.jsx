@@ -1,46 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FriendPreview } from "../../components/FriendPreview";
 import { MessagePreview } from "../../components/MessagePreview";
 import { Post } from "../../components/Post";
+import { http } from "./../../libs/http";
 import styles from "./Home.module.scss";
 
-const friends = [
-  { name: "Chandler", photo: "https://randomuser.me/api/portraits/lego/5.jpg" },
-  { name: "Pippo", photo: "https://randomuser.me/api/portraits/lego/7.jpg" },
-  { name: "Geralt", photo: "https://randomuser.me/api/portraits/lego/8.jpg" },
-];
+const friends = [];
 
-const messages = [
-  { text: "lorem ipsum", date: new Date(), sender: "Pippo" },
-  { text: "bau bau", date: new Date(), sender: "Pluto" },
-  { text: "yoooo", date: new Date(), sender: "V" },
-  { text: "finish the fight", date: new Date(), sender: "Master Chief" },
-  {
-    text: "this cave is not a natural formation",
-    date: new Date(),
-    sender: "Cortana",
-  },
-];
+const messages = [];
 
-const posts = [
-  {
-    author: "User",
-    text: "Oggi ho mangiato robba buona",
-    date: new Date(),
-    photo:
-      "https://images.unsplash.com/photo-1633113087607-bbd9d4b6449a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1024&q=80",
-  },
-  {
-    author: "User",
-    text: "Sto imparando React",
-    date: new Date(),
-  },
-];
+const posts = [];
 
 const Home = () => {
-  const [friendsPreview] = useState(friends);
-  const [allPosts] = useState(posts);
-  const [messagesPreview] = useState(messages);
+  const [friendsPreview, setFriendPreview] = useState(friends);
+  const [allPosts, setAllPosts] = useState(posts);
+  const [messagesPreview, setMessagesPreview] = useState(messages);
+
+  // GETTER -> const friendsPreview = [];
+  // SETTER -> friendsPreview = [...];
+
+  // Esegui del codice quando il componente è inizializzato (montato in pagina)
+  // componentiDidMOunt() --> simile a "DOMContentLoaded" ma solo per il componente
+
+  useEffect(() => {
+
+    http("friends?_limit=4").then((data) => setFriendPreview(data));
+
+    http("posts").then((data) => setAllPosts(data));
+    
+    http("messages?_limit=4").then((data) => setMessagesPreview(data));
+
+
+    // fetch('https://edgemony-backend.herokuapp.com/posts')
+    // .then((res) => res.json())
+    // .then((data) => setAllPosts(data));
+
+  }, []);
+
 
   return (
     <section className={styles.home}>
