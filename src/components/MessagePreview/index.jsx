@@ -9,8 +9,6 @@ const MessagePreview = (props) => {
     sender: "User",
   };
 
-  const createDate = (date) => new Date(date);
-
   return (
     <div className={styles.message}>
       <h5>{data.sender}</h5>
