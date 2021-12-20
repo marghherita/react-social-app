@@ -1,9 +1,18 @@
 
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import styles from "./../Header/Header.module.scss";
 
 const Header = (props) => {
     const name = props.name || 'App';
     const links = props.links || [{ link: "", label: "Link"}];
+
+const CheckActive = (link) => {
+  const resolved = useResolvedPath(link);
+
+  const match = useMatch ({ path: resolved.pathname, end: true });
+
+  return match ? styles.active : "";
+}
 
   return (
     <header className={styles.header}>
@@ -12,7 +21,7 @@ const Header = (props) => {
         <ul>
           {links.map((item, index) => (
             <li key={index}>
-              <a href={item.link}>{item.label}</a>
+              <Link className={CheckActive(item.link)} to={item.link}>{item.label}</Link>
             </li>
           ))}
         </ul>
