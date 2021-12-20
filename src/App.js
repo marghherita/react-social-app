@@ -1,12 +1,8 @@
 import { useReducer } from "react";
-import {
-  Route,
-  Routes
-} from 'react-router-dom';
-
+import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
-import Footer from "./components/Footer/index";
+import Footer from "./components/Footer";
 import CreatePost from "./components/CreatePost";
 
 import Home from "./pages/Home";
@@ -34,9 +30,7 @@ const reducer = (state, action) => {
 function App() {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-
   return (
-
     <div>
       <Header name={state.name} links={state.nav} />
 
@@ -50,9 +44,9 @@ function App() {
         <Route path="/messages" element={<h3>Messages</h3>} />
         <Route path="/friends" element={<h3>Friends</h3>} />
       </Routes>
+
       <Footer />
     </div>
-
   );
 }
 

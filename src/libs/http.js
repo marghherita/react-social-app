@@ -1,8 +1,8 @@
 
-const BASE_URL = "https://edgemony-backend.herokuapp.com/";
+const BASE_URL = "https://edgemony-backend.herokuapp.com";
 
-const http = (resource) => fetch(BASE_URL + resource)
-.then(res => res.json());
+const http = (resource) =>
+  fetch(BASE_URL + resource).then((response) => response.json());
 
 const httpPOST = (resource, data) =>
   fetch(BASE_URL + resource, {

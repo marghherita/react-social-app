@@ -25,11 +25,11 @@ const Home = () => {
 
   useEffect(() => {
 
-    http("friends?_limit=4").then((data) => setFriendPreview(data));
+    http("/friends?_limit=4").then((data) => setFriendPreview(data));
 
-    http("posts").then((data) => setAllPosts(data));
+    http("/posts").then((data) => setAllPosts(data));
     
-    http("messages?_limit=4").then((data) => setMessagesPreview(data));
+    http("/messages?_limit=4").then((data) => setMessagesPreview(data));
 
 
     // fetch('https://edgemony-backend.herokuapp.com/posts')
@@ -42,25 +42,25 @@ const Home = () => {
 
   return (
     <section className={styles.home}>
-    <h3>Bevenuto utente</h3>
-    <div className={styles.grid}>
-      <aside>
-        {friendsPreview.map((friend, index) => (
-          <FriendPreview key={index} data={friend} />
-        ))}
-      </aside>
-      <main>
-        {allPosts.map((post, index) => (
-          <Post key={index} data={post} />
-        ))}
-      </main>
-      <aside>
-        {messagesPreview.map((message, index) => (
-          <MessagePreview key={index} data={message} />
-        ))}
-      </aside>
-    </div>
-  </section>
+      <h3>Bevenuto utente</h3>
+      <div className={styles.grid}>
+        <aside>
+          {friendsPreview.map((friend, index) => (
+            <FriendPreview key={index} data={friend} />
+          ))}
+        </aside>
+        <main>
+          {allPosts.map((post, index) => (
+            <Post key={index} data={post} />
+          ))}
+        </main>
+        <aside>
+          {messagesPreview.map((message, index) => (
+            <MessagePreview key={index} data={message} />
+          ))}
+        </aside>
+      </div>
+    </section>
   );
 };
 
