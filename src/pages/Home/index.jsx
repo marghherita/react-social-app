@@ -3,6 +3,7 @@ import { FriendPreview } from "../../components/FriendPreview";
 import { MessagePreview } from "../../components/MessagePreview";
 import { Post } from "../../components/Post";
 import { http } from "./../../libs/http";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 
 const friends = [];
@@ -16,7 +17,6 @@ const Home = () => {
   const [allPosts, setAllPosts] = useState(posts);
   const [messagesPreview, setMessagesPreview] = useState(messages);
 
-
   // GETTER -> const friendsPreview = [];
   // SETTER -> friendsPreview = [...];
 
@@ -24,21 +24,16 @@ const Home = () => {
   // componentiDidMOunt() --> simile a "DOMContentLoaded" ma solo per il componente
 
   useEffect(() => {
-
     http("/friends?_limit=4").then((data) => setFriendPreview(data));
 
-    http("/posts").then((data) => setAllPosts(data));
-    
-    http("/messages?_limit=4").then((data) => setMessagesPreview(data));
+    http("/posts").then((data) => setAllPosts(data.reverse()));
 
+    http("/messages?_limit=4").then((data) => setMessagesPreview(data));
 
     // fetch('https://edgemony-backend.herokuapp.com/posts')
     // .then((res) => res.json())
     // .then((data) => setAllPosts(data));
-
   }, []);
-
-
 
   return (
     <section className={styles.home}>
@@ -50,6 +45,11 @@ const Home = () => {
           ))}
         </aside>
         <main>
+          <Link to="/new-post">
+            <button className={styles.createPostBtn}>
+              + Create a new post!
+            </button>
+          </Link>
           {allPosts.map((post, index) => (
             <Post key={index} data={post} />
           ))}
