@@ -24,11 +24,11 @@ const Home = () => {
   // componentiDidMOunt() --> simile a "DOMContentLoaded" ma solo per il componente
 
   useEffect(() => {
-    http("/friends?_limit=4").then((data) => setFriendPreview(data));
+    http("friends?_limit=4").then((data) => setFriendPreview(data));
 
-    http("/posts").then((data) => setAllPosts(data.reverse()));
+    http("posts").then((data) => setAllPosts(data.reverse()));
 
-    http("/messages?_limit=4").then((data) => setMessagesPreview(data));
+    http("messages?_limit=4").then((data) => setMessagesPreview(data));
 
     // fetch('https://edgemony-backend.herokuapp.com/posts')
     // .then((res) => res.json())
